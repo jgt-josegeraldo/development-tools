@@ -1,7 +1,7 @@
 # development-tools
 repository to control development tools
 
-## beck-end
+## back-end
 
 ### php 5.6
 
