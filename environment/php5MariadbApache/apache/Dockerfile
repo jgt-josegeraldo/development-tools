@@ -1,6 +1,10 @@
 FROM airdock/apache
 MAINTAINER rubeus <rubeusteam@gmail.com>
 
+ARG UID
+
+ARG USERNAME
+
 RUN apt-get update && apt-get -yq upgrade && \
     apt-get -yq install \
         curl \
@@ -25,14 +29,14 @@ RUN sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2
 
 RUN sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf
 
-RUN useradd -r -u ${UID} -g root  ${USERNAME}
+RUN useradd -r -u $UID -g root  $USERNAME
 
-RUN mkdir  /home/${USERNAME}
+RUN mkdir  /home/$USERNAME
 
-RUN echo "${USERNAME} ALL=(root) NOPASSWD:ALL" > /etc/sudoers
+RUN echo "$USERNAME ALL=(root) NOPASSWD:ALL" > /etc/sudoers
 
-RUN chown -R ${USERNAME}:root /usr/local
-RUN chown -R ${USERNAME} /home/${USERNAME}
+RUN chown -R $USERNAME:root /usr/local
+RUN chown -R $USERNAME /home/$USERNAME
 
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 # ADD sample/ /app

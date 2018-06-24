@@ -1,5 +1,5 @@
 cd node-npm/
-docker build -t rubeus/node-npm .
+docker build --build-arg UID=$UID  --build-arg USERNAME=$USERNAME -t rubeus/node-npm .
 
 cd ../php/php7/
 docker build -t rubeus/php7 .
@@ -36,3 +36,6 @@ docker build -t rubeus/phpunit5.6 .
 
 cd ../../sass/
 docker build --no-cache -t rubeus/sass .
+
+cd ../../environment/php5MariadbApache/apache/
+docker build --build-arg UID=$UID  --build-arg USERNAME=$USERNAME -t rubeus/apache-php2 .
