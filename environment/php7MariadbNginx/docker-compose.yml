@@ -7,34 +7,41 @@ services:
     mariadb:
       image: mariadb:10.1
       container_name: jgt-mariadb10
-      working_dir: /application
       volumes:
-        - ../../../:/application
-        - ../../../mariadb:/var/lib/mysql
+        - ../../../bd-local:/var/lib/mysql
+        - ./mariadb/my.cnf:/etc/mysql/my.cnf
       environment:
-        - MYSQL_ROOT_PASSWORD=jgtHr@0T
-        - MYSQL_DATABASE=speak_english
-        - MYSQL_USER=user_speak_english
-        - MYSQL_PASSWORD=jgtHr@0T
+        - MYSQL_ROOT_PASSWORD=${RB_PASS_BD_DOCKER}
+      #  - MYSQL_DATABASE=speak_english
+      #  - MYSQL_USER=user_speak_english
+        - MYSQL_PASSWORD=${RB_PASS_BD_DOCKER}
       ports:
         - "7003:3306"
 
-    webserver:
-      image: nginx:alpine
-      container_name: jgt-webserver-nginx
-      working_dir: /application
-      volumes:
-          - ../../../:/application
-          - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      ports:
-       - "7000:80"
+#    webserver:
+#      image: nginx:alpine
+#      container_name: jgt-webserver-nginx
+#      working_dir: /application
+#      volumes:
+#          - ../../../:/application
+#          - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+#      ports:
+#       - "7000:80" ConsultaInscricoesConfirmadas
 
     php-fpm:
-      build: php-fpm-7.2
+      image: rubeus/apache-php
+      #image: airdock/apache
+      #build: php-fpm-7.2
       container_name: jgt-php-fpm-7.2
-      working_dir: /application
+      working_dir: /app
+      environment:
+        - APACHE_RUN_USER=jose
+        - APACHE_RUN_GROUP=root
       ports:
-       - "7004:8000"
+       - "7000:80"
       volumes:
-        - ../../../:/application
-        - ./php-fpm-7.2/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini
+        - ../../../:/app
+        - ../../../:/var/www/html
+        - ./apache/log/:/var/log/apache2
+#        - ./apache/config/:/etc/apache2
+#        - ./php-fpm-7.2/php-ini-overrides.ini:/etc/php/7.2/fpm/conf.d/99-overrides.ini

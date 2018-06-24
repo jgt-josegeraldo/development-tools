@@ -1,5 +1,5 @@
 FROM rubeus/composer7.2
-MAINTAINER rubeus <robloach@gmail.com>
+MAINTAINER rubeus <rubeusteam@gmail.com>
 
 # Run some Debian packages installation.
 RUN yum -y update && \

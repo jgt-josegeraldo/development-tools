@@ -1,5 +1,5 @@
 FROM rubeus/node-npm
-MAINTAINER rubeus <robloach@gmail.com>
+MAINTAINER rubeus <rubeusteam@gmail.com>
 
 # Packages
 RUN npm install -g @angular/cli

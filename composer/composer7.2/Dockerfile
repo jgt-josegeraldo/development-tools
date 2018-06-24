@@ -1,5 +1,5 @@
 FROM rubeus/php7.2
-MAINTAINER rubeus <robloach@gmail.com>
+MAINTAINER rubeus <rubeusteam@gmail.com>
 
 # Packages
 RUN yum update -y

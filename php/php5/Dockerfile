@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER rubeus <robloach@gmail.com>
+MAINTAINER rubeus <rubeusteam@gmail.com>
 
 # Packages
 RUN yum update -y

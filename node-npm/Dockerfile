@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER rubeus <robloach@gmail.com>
+MAINTAINER rubeus <rubeusteam@gmail.com>
 
 # Packages
 RUN yum update -y
@@ -12,14 +12,14 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_9.x |  bash -
 
 RUN yum -y install nodejs
 
-RUN useradd -r -u 1000 -g root jose
+RUN useradd -r -u ${UID} -g root ${USERNAME}
 
-RUN mkdir  /home/jose
+RUN mkdir  /home/${USERNAME}
 
-RUN echo "jose ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/jose && chmod 0440 /etc/sudoers.d/jose
+RUN echo "${USERNAME} ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/${USERNAME} && chmod 0440 /etc/sudoers.d/${USERNAME}
 
-RUN chown -R jose:root /usr/local
-RUN chown -R jose /home/jose
+RUN chown -R ${USERNAME}:root /usr/local
+RUN chown -R ${USERNAME} /home/${USERNAME}
 
 # Set up the volumes and working directory
 VOLUME ["/usr/local/lib/node_modules"]

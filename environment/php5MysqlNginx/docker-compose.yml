@@ -12,10 +12,10 @@ services:
         - ../../../:/application
         - ../../../mariadb:/var/lib/mysql
       environment:
-        - MYSQL_ROOT_PASSWORD=jgtHr@0T
+        - MYSQL_ROOT_PASSWORD=${RB_PASS_BD_DOCKER}
         - MYSQL_DATABASE=speak_english
         - MYSQL_USER=user_speak_english
-        - MYSQL_PASSWORD=jgtHr@0T
+        - MYSQL_PASSWORD=${RB_PASS_BD_DOCKER}
       ports:
         - "7003:3306"
 
