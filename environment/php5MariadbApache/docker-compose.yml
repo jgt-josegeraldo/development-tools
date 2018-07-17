@@ -31,3 +31,4 @@ services:
         - ../../../config/apache/log/:/var/log/apache2
         - ./php/php.ini:/etc/php5/apache2/php.ini
         - ./cacert.pem:/etc/ssl/certs/cacert.pem
+        - ../../../config/apache/apache2.conf:/etc/apache/apache2.conf
