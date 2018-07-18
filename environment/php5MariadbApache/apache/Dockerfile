@@ -22,6 +22,10 @@ RUN apt-get update && apt-get -yq upgrade && \
     php5enmod mcrypt && \
     php5enmod json
 
+RUN apt-get update && apt-get -yq install imagemagick bzip2 tar
+
+RUN apt-get -yq install php5-imagick
+
 RUN a2enmod rewrite
 
 RUN sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2/php.ini

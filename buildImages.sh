@@ -4,7 +4,7 @@ docker build --build-arg UID=$UID  --build-arg USERNAME=$USERNAME -t rubeus/node
 cd ../php/php7/
 docker build -t rubeus/php7 .
 
-cd ../php5/
+cd ../php5
 docker build -t rubeus/php5.6 .
 
 cd ../php7.2/
