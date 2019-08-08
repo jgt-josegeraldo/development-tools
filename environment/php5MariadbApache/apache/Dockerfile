@@ -4,6 +4,7 @@ MAINTAINER rubeus <rubeusteam@gmail.com>
 ARG UID
 
 ARG USERNAME
+RUN printf "deb http://archive.debian.org/debian/ jessie main\ndeb-src http://archive.debian.org/debian/ jessie main\ndeb http://security.debian.org jessie/updates main\ndeb-src http://security.debian.org jessie/updates main" > /etc/apt/sources.list
 
 RUN apt-get update && apt-get -yq upgrade && \
     apt-get -yq install \
